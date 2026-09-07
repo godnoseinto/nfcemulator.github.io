@@ -17,12 +17,12 @@
     // 1. Obtener parámetros de la URL (?game=pokemon.gba&core=gba)
     const urlParams = new URLSearchParams(window.location.search);
     const gameFile = urlParams.get('game');
-    const systemCore = urlParams.get('core') || 'gba'; // Por defecto GBA
+    const systemCore = urlParams.get('core') || 'gb';
 
     if (gameFile) {
       // 2. Configuración dinámica de EmulatorJS
       EJS_player = '#game';
-      EJS_gameUrl = `./roms/${gameFile}`; // Ruta del archivo ROM
+      EJS_gameUrl = `./roms/${encodeURIComponent(gameFile)}`;
       EJS_core = systemCore;             // Consola (gba, nes, snes, megadrive, etc.)
       EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/'; // Archivos del emulador desde CDN
 
